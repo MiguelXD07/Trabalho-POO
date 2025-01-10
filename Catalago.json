@@ -1,0 +1,89 @@
+{
+  "Staff": [
+    {
+      "Nome": "Miguel",
+      "Categorias": "Medico",
+      "Especialidades": "Sirurgiao"
+    },
+    {
+      "Nome": "Fernando",
+      "Categorias": "Medico",
+      "Especialidades": "Neurosirurgiao"
+    },
+    {
+      "Nome": "Ana",
+      "Categorias": "Medica",
+      "Especialidades": "Medica de Familia"
+    },
+    {
+      "Nome": "Gabriel",
+      "Categorias": "Enfermeiro",
+      "Especialidades": "Assitente em operacoes"
+    },
+    {
+      "Nome": "Rodrigo",
+      "Categorias": "Enfermeiro",
+      "Especialidades": "Assitente"
+    },
+    {
+      "Nome": "Daniel",
+      "Categorias": "Funcionario",
+      "Especialidades": "Limpezas"
+    },
+    {
+      "Nome": "Margarida",
+      "Categorias": "Secretaria",
+      "Especialidades": "Secetariado"
+    },
+    null,
+    null,
+    null
+  ],
+  "numeroStaff": 7,
+  "Consultas": [
+    {
+      "Consulta": 1,
+      "Paciente": "Miguel",
+      "Cama": 1
+    },
+    {
+      "Consulta": 7,
+      "Paciente": "Mario",
+      "Cama": 2
+    },
+    {
+      "Consulta": 10,
+      "Paciente": "Susana",
+      "Cama": 3
+    },
+    {
+      "Consulta": 2,
+      "Paciente": "Antonio",
+      "Cama": 4
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "numeroConsultas": 4,
+  "consultasDisponiveis": [
+    3,
+    4,
+    5,
+    6,
+    8,
+    9
+  ],
+  "numeroCamas": 4,
+  "camasDisponiveis": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ]
+}
