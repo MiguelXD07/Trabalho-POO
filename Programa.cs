@@ -12,7 +12,7 @@ int opcao;
 string nome;
 
 //Para ler para o Json
-string filepath = @"C:\Users\migue\Desktop\Faculdade\P.O.O\TrabalhoDeGrupo\TrabalhoDeGrupo\Catalago.json";
+string filepath = @"C:\Users\m1nij\Documents\Poo\.vscode\Fichas\Trabalho\Ficheiro.json";
 
 //Staff ja implementada
 hospital.AdicionarStaff(new Hospital("Miguel", "Medico", "Sirurgiao"));
@@ -32,7 +32,7 @@ hospital.AdicionarConsulta(new ConsultasPacientes(10, "Susana", 03));
 do
 {
     Console.WriteLine("Escolha uma das opções:");
-    Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Adicionar Consulta\n7-Grava Json\n8-Lê Json\n0-Sair");
+    Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Adicionar Consulta\n7-Grava Json\n8-Lê Json\n9-Realizar Consulta\n0-Sair");
     opcao = int.Parse(Console.ReadLine());
 
     switch (opcao)
@@ -79,6 +79,14 @@ do
 
             break;
 
+		case 9:
+           RemoverConsultas();
+
+
+
+            break;
+
+
         case 0:
             Console.WriteLine("Adeus");
             break;
@@ -121,6 +129,7 @@ void PesquisarStaffPorNome()
 
     hospital.PesquisarStaffPorNome(nome);
 }
+
 
 
 //Funções para Consultas
@@ -180,5 +189,65 @@ CatalagoHospital LerCatalago()
 
     string conteudo = File.ReadAllText(filepath);
     return JsonSerializer.Deserialize<CatalagoHospital>(conteudo);
+
+}
+
+void RemoverConsultas(){
+
+//1.Lista Staff
+    //1.Lista Staff
+    hospital.ListaConsultas();
+
+    //2.Staff a Remover(numero)
+    System.Console.WriteLine("Consulta a realizar: ");
+    int indice = int.Parse(Console.ReadLine());
+
+    //3.Remover Staff
+    hospital.removerConsulta(indice);
+}
+	
+
+Random random = new Random();
+
+int number = random.Next(1, 7); // Generates a number between 1 and 6
+
+switch (number){
+
+case 1:
+
+Detalhes(3000, "Cancro", "Quimioterapia" );
+
+break;
+
+case 2:
+
+Detalhes(500, "Epilepsia", "Medicamentos anti epileptiocos" );
+
+break;
+
+case 3:
+
+Detalhes(4000, "leucemia", "Radioterapia" );
+
+break;
+
+case 4:
+
+Detalhes(300, "diabetes", "exame ao sangue");
+
+break;
+
+
+case 5:
+
+Detalhes(500, "perna partida", "Fisioterapia");
+
+break;
+
+case 7:
+
+Detalhes(10, "Infeção urinaria", "Medicação anti infeção");
+
+break;
 
 }
