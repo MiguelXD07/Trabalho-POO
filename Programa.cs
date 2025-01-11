@@ -12,7 +12,7 @@ int opcao;
 string nome;
 
 //Para ler para o Json
-string filepath = @"C:\Users\m1nij\Documents\Poo\.vscode\Fichas\Trabalho\Ficheiro.json";
+string filepath = @"C:\Users\migue\Desktop\Faculdade\P.O.O\TrabalhoDeGrupo\TrabalhoDeGrupo\Catalago.json";
 
 //Staff ja implementada
 hospital.AdicionarStaff(new Hospital("Miguel", "Medico", "Sirurgiao"));
@@ -25,14 +25,14 @@ hospital.AdicionarStaff(new Hospital("Margarida", "Secretaria", "Secetariado"));
 
 //Consultas ja implementadas
 hospital.AdicionarConsulta(new ConsultasPacientes(01, "Miguel", 01));
-hospital.AdicionarConsulta(new ConsultasPacientes(07, "Mario", 02));
-hospital.AdicionarConsulta(new ConsultasPacientes(10, "Susana", 03));
+hospital.AdicionarConsulta(new ConsultasPacientes(02, "Mario", 02));
+hospital.AdicionarConsulta(new ConsultasPacientes(03, "Susana", 03));
 
-
+//loop para escolher a opção a realizar
 do
 {
     Console.WriteLine("Escolha uma das opções:");
-    Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Adicionar Consulta\n7-Grava Json\n8-Lê Json\n9-Realizar Consulta\n0-Sair");
+    Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Adicionar Consulta\n7-Realizar Consulta\n8-Grava Json\n9-Lê Json\n\n0-Sair");
     opcao = int.Parse(Console.ReadLine());
 
     switch (opcao)
@@ -68,21 +68,21 @@ do
             break;
 
         case 7:
-            GravaCatalogo(hospital);
+            RemoverConsultas();
+
 
             break;
 
         case 8:
-            hospital = LerCatalago();
-            hospital.ListaStaff();
-            hospital.ListaConsultas();
+            GravaCatalogo(hospital);
+
 
             break;
 
-		case 9:
-           RemoverConsultas();
-
-
+        case 9:
+            hospital = LerCatalago();
+            hospital.ListaStaff();
+            hospital.ListaConsultas();
 
             break;
 
@@ -171,6 +171,84 @@ void AdicionarConsulta()
     }
 }
 
+void RemoverConsultas()
+{
+    // Lista Consultas
+    hospital.ListaConsultas();
+
+    //Consulta a remover (número)
+    System.Console.WriteLine("Consulta a realizar: ");
+    int indice = int.Parse(Console.ReadLine());
+
+    //Verifica se o índice é válido
+    if (indice >= 0 && indice < hospital.numeroConsultas)
+    {
+        //Consulta a ser removida
+        ConsultasPacientes consultaRemover = hospital.Consultas[indice];
+
+        //Exibe os detalhes da consulta
+        Console.WriteLine($"Paciente: {consultaRemover.Paciente}, Cama: {consultaRemover.Cama}");
+
+        //Cria um objeto Detalhes e preenche com as informações da consulta removida
+        Detalhes detalhes = new Detalhes();
+        Random random = new Random();
+        int number = random.Next(1, 7); //Gera um número entre 1 e 6
+
+        switch (number)
+        {
+            case 1:
+                detalhes.Preco = 3000;
+                detalhes.Diagnostico = "Cancro";
+                detalhes.Exame = "Quimioterapia";
+                break;
+
+            case 2:
+                detalhes.Preco = 500;
+                detalhes.Diagnostico = "Epilepsia";
+                detalhes.Exame = "Medicamentos anti epileptiocos";
+                break;
+
+            case 3:
+                detalhes.Preco = 4000;
+                detalhes.Diagnostico = "Leucemia";
+                detalhes.Exame = "Radioterapia";
+                break;
+
+            case 4:
+                detalhes.Preco = 300;
+                detalhes.Diagnostico = "Diabetes";
+                detalhes.Exame = "Exame ao Sangue";
+                break;
+
+            case 5:
+                detalhes.Preco = 500;
+                detalhes.Diagnostico = "Perna Partida";
+                detalhes.Exame = "Fisioterapia";
+                break;
+
+            case 6:
+                detalhes.Preco = 200;
+                detalhes.Diagnostico = "Infeção urinária";
+                detalhes.Exame = "Medicação anti infeção";
+                break;
+
+            default:
+                Console.WriteLine("Opção inválida.");
+                break;
+        }
+
+        // Exibe os detalhes da consulta removida
+        Console.WriteLine(detalhes.ToString());
+
+        // Remove a consulta
+        hospital.RemoverConsultas(indice);
+    }
+    else
+    {
+        System.Console.WriteLine("Índice Inválido");
+    }
+}
+
 
 
 //Ficheiro Json
@@ -185,69 +263,7 @@ void GravaCatalogo(CatalagoHospital catalago)
 
 CatalagoHospital LerCatalago()
 {
-
-
     string conteudo = File.ReadAllText(filepath);
     return JsonSerializer.Deserialize<CatalagoHospital>(conteudo);
-
 }
 
-void RemoverConsultas(){
-
-//1.Lista Staff
-    //1.Lista Staff
-    hospital.ListaConsultas();
-
-    //2.Staff a Remover(numero)
-    System.Console.WriteLine("Consulta a realizar: ");
-    int indice = int.Parse(Console.ReadLine());
-
-    //3.Remover Staff
-    hospital.removerConsulta(indice);
-}
-	
-
-Random random = new Random();
-
-int number = random.Next(1, 7); // Generates a number between 1 and 6
-
-switch (number){
-
-case 1:
-
-Detalhes(3000, "Cancro", "Quimioterapia" );
-
-break;
-
-case 2:
-
-Detalhes(500, "Epilepsia", "Medicamentos anti epileptiocos" );
-
-break;
-
-case 3:
-
-Detalhes(4000, "leucemia", "Radioterapia" );
-
-break;
-
-case 4:
-
-Detalhes(300, "diabetes", "exame ao sangue");
-
-break;
-
-
-case 5:
-
-Detalhes(500, "perna partida", "Fisioterapia");
-
-break;
-
-case 7:
-
-Detalhes(10, "Infeção urinaria", "Medicação anti infeção");
-
-break;
-
-}
