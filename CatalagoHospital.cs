@@ -8,20 +8,20 @@ public class CatalagoHospital
     public int numeroStaff { get; set; }
     private int MAXFunc = 10;
 
-    //Consultas e Pacientes
+    //Consultas e Camas
     public ConsultasPacientes[] Consultas { get; set; }
     public int numeroConsultas { get; set; }
     public List<int> consultasDisponiveis { get; set; } //Lista para armazenar consultas disponíveis
     private int MAXConsultas = 10;
 
-    public string diagnostico; public string Exame; public float custo;
-
-    //Camas
     public int numeroCamas { get; set; }
     public List<int> camasDisponiveis { get; set; } //Lista para armazenar camas disponíveis
     private int MAXCamas = 10;
 
-    public CatalagoHospital()
+    public List<ConsultasPacientes> ConsultasRealizadas { get; set; }   //Nova lista para armazenar consultas realizadas
+
+
+     public CatalagoHospital()
     {
         this.numeroStaff = 0;
         this.Staff = new Hospital[MAXFunc];
@@ -32,6 +32,7 @@ public class CatalagoHospital
         this.numeroCamas = 0;
         this.camasDisponiveis = new List<int>(); //Inicializa a lista de camas disponíveis
         this.consultasDisponiveis = new List<int>(); //Inicializa a lista de consultas disponíveis
+        this.ConsultasRealizadas = new List<ConsultasPacientes>(); //Inicializa a lista de consultas realizadas
 
         //Preenche a lista de camas disponíveis
         for (int i = 1; i <= MAXCamas; i++)
@@ -39,7 +40,7 @@ public class CatalagoHospital
             camasDisponiveis.Add(i); //Adiciona camas de 1 a 10
         }
 
-        //Preenche a lista de consultas disponíveis
+        // Preenche a lista de consultas disponíveis
         for (int i = 1; i <= MAXConsultas; i++)
         {
             consultasDisponiveis.Add(i); //Adiciona consultas de 1 a 10
@@ -84,8 +85,7 @@ public class CatalagoHospital
             System.Console.WriteLine("Indice Inválido");
         }
     }
-    
-  
+
     public void PesquisarStaffPorNome(string nome)
     {
         Console.WriteLine("");
@@ -146,27 +146,26 @@ public void AdicionarConsulta(ConsultasPacientes consultas)
         Console.WriteLine("");
     }
 
-
-  public void removerConsulta(int indice)
+    public void RemoverConsultas(int indice)
     {
-
-    if (indice >= 0 && indice < this.numeroConsultas)
+        if (indice >= 0 && indice < this.numeroConsultas)
         {
-            for(int i = indice; i < this.numeroConsultas - 1; i++)
+            //Adiciona a consulta removida à lista de consultas realizadas
+            ConsultasRealizadas.Add(Consultas[indice]);
+
+            for (int i = indice; i < this.numeroConsultas - 1; i++)
             {
                 this.Consultas[i] = this.Consultas[i + 1]; //shift para a esquerda
-
             }
-            Consultas[this.numeroConsultas - 1] = null; //limpa o ultimo elemento
+            Consultas[this.numeroConsultas - 1] = null; //limpa o último elemento
             this.numeroConsultas--;
-            
-            System.Console.WriteLine("Consulta realizada.");
+            this.numeroCamas--;
+            System.Console.WriteLine("Consulta Realizada.");
+            Console.WriteLine("");
         }
         else
         {
-            System.Console.WriteLine("Indice Inválido");
+            System.Console.WriteLine("Índice Inválido");
         }
-}
-
-public void detalhesConsulta(){}
+    }
 }
