@@ -11,7 +11,7 @@ CatalagoHospital hospital = new CatalagoHospital();
 int opcao;
 string nome;
 
-//Para ler para o Json        Esta a ler para o meu visual vcs têm de mudar o vosso path
+//Para ler para o Json
 string filepath = @"C:\Users\migue\Desktop\Faculdade\P.O.O\TrabalhoDeGrupo\TrabalhoDeGrupo\Catalago.json";
 
 //Staff ja implementada
@@ -103,14 +103,14 @@ void AdicionarStaff()
 
 void RemoverStaff()
 {
-    //1. Lista Livros
+    //1.Lista Staff
     hospital.ListaStaff();
 
-    //2. Livro a remover (numero)
+    //2.Staff a Remover(numero)
     System.Console.WriteLine("Staff a Despedir: ");
     int indice = int.Parse(Console.ReadLine());
 
-    //3. Remover livro
+    //3.Remover Staff
     hospital.RemoverStaff(indice);
 }
 
