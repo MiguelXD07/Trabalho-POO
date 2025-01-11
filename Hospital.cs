@@ -44,4 +44,32 @@ public class ConsultasPacientes
     {
         return "Consulta:  0" + Consulta + ", Paciente: " + Paciente + ", Cama: 0" + Cama;
     }
+
+   
 }
+public class Detalhes
+{
+    public float Preco { get; set; }
+    public string Exame { get; set; }
+    public string Diagnostico{ get; set; }
+
+    //Construtor padrão necessário para deserialização
+    public Detalhes() { }
+
+    public Detalhes(float preco, string diagnostico, string exame)
+    {
+        this.Preco = preco;
+        this.Diagnostico = diagnostico;
+         this.Exame = exame;
+    }
+
+    override public string ToString()
+    {
+        return "Preco:  " + Preco + ", Diagnostico: " + Diagnostico + ", Exame: " + Exame;
+    }
+
+    
+
+   
+}
+
