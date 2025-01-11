@@ -14,6 +14,8 @@ public class CatalagoHospital
     public List<int> consultasDisponiveis { get; set; } //Lista para armazenar consultas disponíveis
     private int MAXConsultas = 10;
 
+    public string diagnostico; public string Exame; public float custo;
+
     //Camas
     public int numeroCamas { get; set; }
     public List<int> camasDisponiveis { get; set; } //Lista para armazenar camas disponíveis
@@ -82,7 +84,8 @@ public class CatalagoHospital
             System.Console.WriteLine("Indice Inválido");
         }
     }
-
+    
+  
     public void PesquisarStaffPorNome(string nome)
     {
         Console.WriteLine("");
@@ -137,9 +140,33 @@ public void AdicionarConsulta(ConsultasPacientes consultas)
         Console.WriteLine("");
         for (int i = 0; i < this.numeroConsultas; i++)
         {
+            Console.Write("{0}: ", i);
             System.Console.WriteLine(this.Consultas[i]);
         }
         Console.WriteLine("");
     }
 
+
+  public void removerConsulta(int indice)
+    {
+
+    if (indice >= 0 && indice < this.numeroConsultas)
+        {
+            for(int i = indice; i < this.numeroConsultas - 1; i++)
+            {
+                this.Consultas[i] = this.Consultas[i + 1]; //shift para a esquerda
+
+            }
+            Consultas[this.numeroConsultas - 1] = null; //limpa o ultimo elemento
+            this.numeroConsultas--;
+            
+            System.Console.WriteLine("Consulta realizada.");
+        }
+        else
+        {
+            System.Console.WriteLine("Indice Inválido");
+        }
+}
+
+public void detalhesConsulta(){}
 }
