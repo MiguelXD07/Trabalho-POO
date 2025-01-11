@@ -67,9 +67,4 @@ public class Detalhes
     {
         return "Preco:  " + Preco + ", Diagnostico: " + Diagnostico + ", Exame: " + Exame;
     }
-
-    
-
-   
 }
-
