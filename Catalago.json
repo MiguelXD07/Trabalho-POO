@@ -8,11 +8,11 @@
     {
       "Nome": "Fernando",
       "Categorias": "Medico",
-      "Especialidades": "Neurosirurgiao"
+      "Especialidades": "Medico de Familia"
     },
     {
       "Nome": "Ana",
-      "Categorias": "Medica",
+      "Categorias": "Medico",
       "Especialidades": "Medica de Familia"
     },
     {
@@ -32,9 +32,19 @@
     },
     {
       "Nome": "Margarida",
-      "Categorias": "Secretaria",
+      "Categorias": "Secretario",
       "Especialidades": "Secetariado"
     },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
     null
@@ -42,25 +52,27 @@
   "numeroStaff": 7,
   "Consultas": [
     {
-      "Consulta": 1,
-      "Paciente": "Miguel",
-      "Cama": 1
-    },
-    {
-      "Consulta": 7,
+      "Consulta": 2,
       "Paciente": "Mario",
       "Cama": 2
     },
     {
-      "Consulta": 10,
+      "Consulta": 3,
       "Paciente": "Susana",
       "Cama": 3
     },
-    {
-      "Consulta": 2,
-      "Paciente": "Antonio",
-      "Cama": 4
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
     null,
@@ -68,22 +80,54 @@
     null,
     null
   ],
-  "numeroConsultas": 4,
+  "numeroConsultas": 2,
   "consultasDisponiveis": [
-    3,
     4,
-    5,
-    6,
-    8,
-    9
-  ],
-  "numeroCamas": 4,
-  "camasDisponiveis": [
     5,
     6,
     7,
     8,
     9,
-    10
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    1
+  ],
+  "numeroCamas": 2,
+  "camasDisponiveis": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    1
+  ],
+  "numeroConsultasRealizadas": 1,
+  "ConsultasRealizadas": [
+    {
+      "Consulta": 1,
+      "Paciente": "Miguel",
+      "Cama": 1
+    }
   ]
 }
