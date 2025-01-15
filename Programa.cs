@@ -1,25 +1,22 @@
-using System.Globalization;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Xml.Serialization;
 using System.Text.Json;
 
-Console.WriteLine("Bem-vindo ao Hospital ->Arruinado<-");
+
 
 CatalagoHospital hospital = new CatalagoHospital();
 
 int opcao;
 string nome;
+float fundos = 10000;
 
 //Para ler para o Json
-string filepath = @"C:\Users\migue\Desktop\Faculdade\P.O.O\TrabalhoDeGrupo\TrabalhoDeGrupo\Catalago.json";
+string filepath = @"C:\Users\m1nij\Documents\Poo\.vscode\Fichas\Trabalho\Ficheiro.json";
 
 //Staff ja implementada
-hospital.AdicionarStaff(new Hospital("Miguel", "Medico", "Sirurgiao"));
+hospital.AdicionarStaff(new Hospital("Miguel", "Medico", "Cirurgiao"));
 hospital.AdicionarStaff(new Hospital("Fernando", "Medico", "Medico de Familia"));
 hospital.AdicionarStaff(new Hospital("Ana", "Medico", "Medica de Familia"));
-hospital.AdicionarStaff(new Hospital("Gabriel", "Enfermeiro", "Assitente em operacoes"));
-hospital.AdicionarStaff(new Hospital("Rodrigo", "Enfermeiro", "Assitente"));
+hospital.AdicionarStaff(new Hospital("Gabriel", "Enfermeiro", "Assistente em operacoes"));
+hospital.AdicionarStaff(new Hospital("Rodrigo", "Enfermeiro", "Assistente"));
 hospital.AdicionarStaff(new Hospital("Daniel", "Funcionario", "Limpezas"));
 hospital.AdicionarStaff(new Hospital("Margarida", "Secretario", "Secetariado"));
 
@@ -31,64 +28,111 @@ hospital.AdicionarConsulta(new ConsultasPacientes(03, "Susana", 03));
 //loop para escolher a opção a realizar
 do
 {
+    Console.Clear();
+    Console.WriteLine("\x1b[3J");
+
+    Console.WriteLine("Bem-vindo ao Hospital ->Arruinado<-");
+    System.Console.WriteLine($"Fundos do Hospital: {fundos}\n");
     Console.WriteLine("Escolha uma das opções:");
     Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Consultas Realizadas\n7-Adicionar Consulta\n8-Realizar Consulta\n9-Grava Json\n10-Lê Json\n\n0-Sair");
     opcao = int.Parse(Console.ReadLine());
 
+
+
     switch (opcao)
     {
+
         case 1:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             hospital.ListaStaff();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 2:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             AdicionarStaff();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 3:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             RemoverStaff();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 4:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             PesquisarStaffPorCategoria();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 5:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             hospital.ListaConsultas();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 6:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             hospital.ListaConsultasRealizadas();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 7:
+            Console.Clear();
             AdicionarConsulta();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
         case 8:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             RemoverConsultas();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
 
             break;
 
         case 9:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             GravaCatalogo(hospital);
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
 
             break;
 
         case 10:
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             hospital = LerCatalago();
             hospital.ListaStaff();
             hospital.ListaConsultas();
             hospital.ListaConsultasRealizadas();
+            System.Console.WriteLine("Precione qualquer tecla");
+            Console.ReadKey();
 
             break;
 
@@ -105,8 +149,12 @@ void AdicionarStaff()
     Console.WriteLine("Escreva o Nome:");
     string nome = Console.ReadLine();
 
+    nome = CapitalizarPrimeiraLetra(nome);
+
     Console.WriteLine("Escreva a Categoria (Medico, Enfermeiro, Secretaria, Funcionario):");
     string categorias = Console.ReadLine();
+
+    categorias = CapitalizarPrimeiraLetra(categorias);
 
     Console.WriteLine("Escreva a Especialidade:");
     string especialidades = Console.ReadLine();
@@ -132,6 +180,8 @@ void PesquisarStaffPorCategoria()
 {
     System.Console.WriteLine("Categoria de um Staff (Letra inicial Maiúscula): ");
     nome = Console.ReadLine();
+
+    nome = CapitalizarPrimeiraLetra(nome);
 
     hospital.PesquisarStaffPorCategoria(nome);
 }
@@ -246,6 +296,8 @@ void RemoverConsultas()
         // Exibe os detalhes da consulta removida
         Console.WriteLine(detalhes.ToString());
 
+        fundos = fundos + detalhes.Preco;
+
         // Remove a consulta
         hospital.RemoverConsultas(indice);
     }
@@ -273,3 +325,10 @@ CatalagoHospital LerCatalago()
     return JsonSerializer.Deserialize<CatalagoHospital>(conteudo);
 }
 
+string CapitalizarPrimeiraLetra(string str)//função para fazer a primeira letra maiuscula
+{
+    if (string.IsNullOrEmpty(str))
+        return str;
+
+    return char.ToUpper(str[0]) + str.Substring(1).ToLower();
+}
