@@ -17,11 +17,11 @@ string filepath = @"C:\Users\migue\Desktop\Faculdade\P.O.O\TrabalhoDeGrupo\Traba
 //Staff ja implementada
 hospital.AdicionarStaff(new Hospital("Miguel", "Medico", "Sirurgiao"));
 hospital.AdicionarStaff(new Hospital("Fernando", "Medico", "Neurosirurgiao"));
-hospital.AdicionarStaff(new Hospital("Ana", "Medica", "Medica de Familia"));
+hospital.AdicionarStaff(new Hospital("Ana", "Medico", "Medica de Familia"));
 hospital.AdicionarStaff(new Hospital("Gabriel", "Enfermeiro", "Assitente em operacoes"));
 hospital.AdicionarStaff(new Hospital("Rodrigo", "Enfermeiro", "Assitente"));
 hospital.AdicionarStaff(new Hospital("Daniel", "Funcionario", "Limpezas"));
-hospital.AdicionarStaff(new Hospital("Margarida", "Secretaria", "Secetariado"));
+hospital.AdicionarStaff(new Hospital("Margarida", "Secretario", "Secetariado"));
 
 //Consultas ja implementadas
 hospital.AdicionarConsulta(new ConsultasPacientes(01, "Miguel", 01));
@@ -32,7 +32,7 @@ hospital.AdicionarConsulta(new ConsultasPacientes(03, "Susana", 03));
 do
 {
     Console.WriteLine("Escolha uma das opções:");
-    Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Adicionar Consulta\n7-Realizar Consulta\n8-Grava Json\n9-Lê Json\n\n0-Sair");
+    Console.WriteLine("1-Ver Staff\n2-Adicionar Staff\n3-Despedir Staff\n4-Pesquisar Staff\n5-Lista de Consultas\n6-Consultas Realizadas\n7-Adicionar Consulta\n8-Realizar Consulta\n9-Grava Json\n10-Lê Json\n\n0-Sair");
     opcao = int.Parse(Console.ReadLine());
 
     switch (opcao)
@@ -53,7 +53,7 @@ do
             break;
 
         case 4:
-            PesquisarStaffPorNome();
+            PesquisarStaffPorCategoria();
 
             break;
 
@@ -63,26 +63,32 @@ do
             break;
 
         case 6:
-            AdicionarConsulta();
+            hospital.ListaConsultasRealizadas();
 
             break;
 
         case 7:
+            AdicionarConsulta();
+
+            break;
+
+        case 8:
             RemoverConsultas();
 
 
             break;
 
-        case 8:
+        case 9:
             GravaCatalogo(hospital);
 
 
             break;
 
-        case 9:
+        case 10:
             hospital = LerCatalago();
             hospital.ListaStaff();
             hospital.ListaConsultas();
+            hospital.ListaConsultasRealizadas();
 
             break;
 
@@ -122,12 +128,12 @@ void RemoverStaff()
     hospital.RemoverStaff(indice);
 }
 
-void PesquisarStaffPorNome()
+void PesquisarStaffPorCategoria()
 {
-    System.Console.WriteLine("Nome de um Staff: ");
+    System.Console.WriteLine("Categoria de um Staff (Letra inicial Maiúscula): ");
     nome = Console.ReadLine();
 
-    hospital.PesquisarStaffPorNome(nome);
+    hospital.PesquisarStaffPorCategoria(nome);
 }
 
 
@@ -138,14 +144,14 @@ void AdicionarConsulta()
     if (hospital.numeroConsultas < 10) //Verifica se há consultas disponíveis
     {
         hospital.ListaConsultasDisponiveis(); //Mostra as consultas disponíveis
-        Console.WriteLine("Número da consulta (2 dígitos):");
+        Console.WriteLine("Número da consulta:");
         int consulta = int.Parse(Console.ReadLine());
 
         Console.WriteLine("Escreva o Nome do Paciente:");
         string paciente = Console.ReadLine();
 
         hospital.ListaCamasDisponiveis(); //Mostra as camas disponíveis
-        Console.WriteLine("Insira o número da cama (2 dígitos):");
+        Console.WriteLine("Insira o número da cama:");
         int cama = int.Parse(Console.ReadLine());
 
         if (hospital.camasDisponiveis.Contains(cama)) //Verifica se a cama está disponível
@@ -198,38 +204,38 @@ void RemoverConsultas()
         {
             case 1:
                 detalhes.Preco = 3000;
-                detalhes.Diagnostico = "Cancro";
-                detalhes.Exame = "Quimioterapia";
+                detalhes.Exame = "Cancro";
+                detalhes.Diagnostico = "Quimioterapia";
                 break;
 
             case 2:
                 detalhes.Preco = 500;
-                detalhes.Diagnostico = "Epilepsia";
-                detalhes.Exame = "Medicamentos anti epileptiocos";
+                detalhes.Exame = "Epilepsia";
+                detalhes.Diagnostico = "Medicamentos anti epileptiocos";
                 break;
 
             case 3:
                 detalhes.Preco = 4000;
-                detalhes.Diagnostico = "Leucemia";
-                detalhes.Exame = "Radioterapia";
+                detalhes.Exame = "Leucemia";
+                detalhes.Diagnostico = "Radioterapia";
                 break;
 
             case 4:
                 detalhes.Preco = 300;
-                detalhes.Diagnostico = "Diabetes";
-                detalhes.Exame = "Exame ao Sangue";
+                detalhes.Exame = "Diabetes";
+                detalhes.Diagnostico = "Exame ao Sangue";
                 break;
 
             case 5:
                 detalhes.Preco = 500;
-                detalhes.Diagnostico = "Perna Partida";
-                detalhes.Exame = "Fisioterapia";
+                detalhes.Exame = "Perna Partida";
+                detalhes.Diagnostico = "Fisioterapia";
                 break;
 
             case 6:
                 detalhes.Preco = 200;
-                detalhes.Diagnostico = "Infeção urinária";
-                detalhes.Exame = "Medicação anti infeção";
+                detalhes.Exame = "Infeção urinária";
+                detalhes.Diagnostico = "Medicação anti infeção";
                 break;
 
             default:
