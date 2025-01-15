@@ -16,7 +16,7 @@ string filepath = @"C:\Users\migue\Desktop\Faculdade\P.O.O\TrabalhoDeGrupo\Traba
 
 //Staff ja implementada
 hospital.AdicionarStaff(new Hospital("Miguel", "Medico", "Sirurgiao"));
-hospital.AdicionarStaff(new Hospital("Fernando", "Medico", "Neurosirurgiao"));
+hospital.AdicionarStaff(new Hospital("Fernando", "Medico", "Medico de Familia"));
 hospital.AdicionarStaff(new Hospital("Ana", "Medico", "Medica de Familia"));
 hospital.AdicionarStaff(new Hospital("Gabriel", "Enfermeiro", "Assitente em operacoes"));
 hospital.AdicionarStaff(new Hospital("Rodrigo", "Enfermeiro", "Assitente"));
