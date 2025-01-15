@@ -44,9 +44,9 @@ public class ConsultasPacientes
     {
         return "Consulta:  0" + Consulta + ", Paciente: " + Paciente + ", Cama: 0" + Cama;
     }
-
-   
 }
+
+//Detalhes da Consulta
 public class Detalhes
 {
     public float Preco { get; set; }
@@ -65,6 +65,6 @@ public class Detalhes
 
     override public string ToString()
     {
-        return "Preco:  " + Preco + ", Diagnostico: " + Diagnostico + ", Exame: " + Exame;
+        return "Preco:  " + Preco + ", Exame: " + Exame + ", Diagnostico: " + Diagnostico;
     }
 }
